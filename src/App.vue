@@ -6,7 +6,7 @@ import HelloWorld from './components/HelloWorld.vue';
 
 <template>
   <h>
-    Hello Word
+    Hello Will
   </h>
   <div>
     <a href="https://vitejs.dev" target="_blank">
