@@ -2,10 +2,12 @@ kind: pipeline
 name: cola_ci
 type: docker
 
+clone:
+  disable: true
+
 steps:
   - name: build
     image: node:16
-    depends_on: [clone]
     commands:
       - echo '-----start------'
       - ls
