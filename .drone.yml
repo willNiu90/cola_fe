@@ -19,7 +19,7 @@ steps:
       - ls
 trigger:
   branch:
-    - master
+    - feat-hello
   event:
     - pull_request
     - push
