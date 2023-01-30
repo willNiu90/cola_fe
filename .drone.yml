@@ -6,9 +6,15 @@ clone:
   disable: true
 
 steps:
-  - name: start
+  - name: build
+    image: node:16
+    depends_on: [clone]
     commands:
       - echo '-----start------'
+      - ls
+      - npm install --registry https://registry.npm.taobao.org
+      - npm run build
+      - echo '-----end------'
       - ls
 
 trigger:
