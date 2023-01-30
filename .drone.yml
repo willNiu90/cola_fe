@@ -1,5 +1,10 @@
 kind: pipeline
-name: api
+name: cola_ci
+type: docker
+
+clone:
+  disable: true
+
 steps:
   - name: start
     commands:
