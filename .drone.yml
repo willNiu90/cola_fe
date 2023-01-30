@@ -18,6 +18,11 @@ steps:
       - echo '-----end------'
       - ls
 
+  - name: deploy
+    depends_on: [build]
+    commands:
+      - cp -r dist/* /cola/cola_fe
+
 trigger:
   branch:
     - feat-hello
