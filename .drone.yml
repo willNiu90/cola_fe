@@ -1,7 +1,45 @@
 kind: pipeline
-name: default
+type: docker
+name: cole_ci
+
 steps:
-    - name: Hello World
-      image: centos
-      commands:
-        - echo Hello World
+ - name: start
+    commands:
+      - echo '----start----'
+      - ls
+ - name: restore-cache
+    pull: if-not-exists
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - ./node_modules
+  - name: build-front
+    pull: if-not-exists
+    image: node:16
+    commands:
+      - npm install --registry https://registry.npm.taobao.org
+      - npm run build
+  - name: rebuild-cache
+    pull: if-not-exists
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
+  - name: end
+    commands:
+      - echo '----end----'
+      - ls
+trigger:
+  branch:
+    - master
+  event:
+    - pull_request
+    - push
