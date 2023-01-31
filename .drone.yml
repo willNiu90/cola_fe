@@ -21,7 +21,7 @@ steps:
   - name: deploy
     depends_on: [build]
     commands:
-      - rm -rf /cola/cola_fe
+      - rm -rf /cola/cola_fe/*
       - cp -r dist/* /cola/cola_fe
 
 trigger:
